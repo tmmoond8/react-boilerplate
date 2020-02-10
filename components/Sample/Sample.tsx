@@ -1,4 +1,4 @@
-import styled, { withProps } from '../../styles/themed-components';
+import styled from '../../styles/themed-components';
 const StyledP = styled.p`
   ${props => props.theme.media.tablet`
     color: black;
@@ -13,11 +13,11 @@ const StyledP = styled.p`
 `;
 
 interface ISample {
-  visible: string;
+  visible: boolean;
 }
 
-const SampleWithProps = withProps<ISample, HTMLSpanElement>(styled.span)`
-  visibility: ${props => props.visible ? 'visible' : 'hidden'};
+const StyledSample = styled('span')<ISample>`
+  visibility: ${p => p.visible ? 'visible' : 'hidden'};
 `;
 
 interface IProps {
@@ -26,7 +26,7 @@ interface IProps {
 
 const Test = (props: IProps) => (
   <StyledP>
-    <SampleWithProps visible={true}>🐶{props.text}🦄🐔</SampleWithProps>
+    <StyledSample visible={true}>🐶{props.text}🦄🐔</StyledSample>
   </StyledP>
 );
 
